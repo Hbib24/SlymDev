@@ -1,6 +1,6 @@
 <template>
-    <div class="p-4 h-dvh">
-        <div class="flex justify-between mb-4">
+    <div class="py-4 px-2 h-dvh">
+        <div class="flex justify-between py-3">
             <div>
                 <button class="rounded-lg back-btn w-10 h-10">
                     <span class="material-symbols-rounded ml-1">
@@ -17,27 +17,26 @@
                 />
             </button>
         </div>
-        <div class="flex gap-3">
-            <div class="w-96 bg-white rounded-xl p-4">
-                <!-- Sidebar content -->
+        <div class="flex gap-3" style="height: 92%;">
+            <div class="w-96 bg-white rounded-xl p-4 hidden lg:block">
+                 <Sidebar />
             </div>
             <div class="flex-1 rounded-xl w-full bg-white/50">
                 <!-- Main content -->
+                 <Content />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-export default {};
+import Sidebar from "./Sidebar.vue";
+import Content from "./Content.vue";
+export default {
+    components: { Sidebar, Content },
+};
 </script>
 
 <style>
-.back-btn {
-    background-color: rgb(223, 229, 241);
-    span {
-        font-size: 16px;
-        text-align: center;
-    }
-}
+
 </style>
