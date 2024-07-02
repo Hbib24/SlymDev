@@ -17,6 +17,12 @@
     background: #55555581;
 }
 
+@media (max-width: 640px) {
+    *::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 body {
     font-family: Manrope;
     overflow: hidden;
@@ -28,10 +34,6 @@ body {
         rgb(250, 251, 255) 60%,
         rgba(233, 235, 250, 1) 100%
     );
-}
-
-.back-btn {
-    background-color: rgb(223, 229, 241);
 }
 
 .material-symbols-rounded.fill {

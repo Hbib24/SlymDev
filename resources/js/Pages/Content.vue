@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center gap-6 max-w-xl mx-auto">
-        <div class="w-full h-20">
+        <div class="w-full h-20 animate__animated animate__fadeIn">
             <div class="flex justify-between items-center">
                 <div class="flex gap-x-3">
                     <span
@@ -13,29 +13,36 @@
                     </div>
                 </div>
                 <div>
-                    <div class="text-featured font-bold">You earned 20 500</div>
-                    <div class="text-xs text-gray-500 font-semibold">
+                    <div id="total-xp" class="text-featured font-bold">
+                        You earned {{ earnings.toLocaleString("fr") }}
+                    </div>
+                    <div
+                        id="xp-to-earn"
+                        class="text-xs text-gray-500 font-semibold invisible"
+                    >
                         Total XP to earn: 12 000
                     </div>
                 </div>
             </div>
             <div
+                id="progress-bar"
                 class="w-full rounded-full bg-white flex items-center mt-4 p-1 shadow-sm"
             >
                 <div
-                    class="bg-blue-400 w-1/2 h-2 rounded-full bg-featured"
+                    class="bg-blue-400 h-2 rounded-full bg-featured ease-out duration-300"
+                    :style="{ width: completionPercent + '%' }"
                 ></div>
             </div>
         </div>
 
         <!-------------------------------
 
-             IN A REAL APP THIS CARD WOULD BE A COMPONENT WITH DYNAMIC CONTENT PROJECTION
-             BUT SINCE THIS IS A TEST I FOCUSED ON DESIGN RATHER THAN OPTIMIZATION  
+            IN A REAL APP THIS CARD WOULD BE A COMPONENT WITH DYNAMIC CONTENT PROJECTION
+            BUT SINCE THIS IS A TEST I FOCUSED ON DESIGN RATHER THAN OPTIMIZATION  
 
-        ------------------------------->
+        --------------------------------->
         <div
-            class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center"
+            class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center animate__animated animate__fadeIn hover:scale-105 ease-out duration-300 cursor-pointer"
         >
             <img :src="img" />
 
@@ -63,7 +70,7 @@
         </div>
 
         <div
-            class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center"
+            class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center animate__animated animate__fadeIn hover:scale-105 ease-out duration-300 cursor-pointer"
         >
             <img class="w-full" :src="img3" />
 
@@ -102,7 +109,31 @@ export default {
             img2,
             img3,
             check,
+            completionPercent: 0,
+            earnings: 0,
         };
+    },
+    mounted() {
+        const int = setInterval(() => {
+            if (this.completionPercent == 50) {
+                clearInterval(int);
+                [
+                    document.getElementById("progress-bar"),
+                    document.getElementById("total-xp"),
+                ].forEach((ele) => {
+                    ele.classList.add("animate__animated");
+                    ele.classList.add("animate__pulse");
+                });
+
+                const ele = document.getElementById("xp-to-earn");
+                ele.classList.remove("invisible");
+                ele.classList.add("animate__animated");
+                ele.classList.add("animate__fadeInDown");
+            } else {
+                this.completionPercent += 1;
+                this.earnings += 550;
+            }
+        }, 20);
     },
 };
 </script>

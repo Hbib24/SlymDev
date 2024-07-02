@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div >
         <div class="flex justify-between items-center h-16">
             <span class="font-semibold">DM Setting</span>
             <button class="rounded-lg border w-10 h-10 hover:bg-gray-100">
@@ -90,6 +90,7 @@ export default {
             img6,
         };
     },
+
 };
 </script>
 
