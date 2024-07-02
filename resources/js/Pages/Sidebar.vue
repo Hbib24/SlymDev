@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="">
         <div class="flex justify-between items-center h-16">
             <span class="font-semibold">DM Setting</span>
-            <button class="rounded-lg border w-10 h-10">
+            <button class="rounded-lg border w-10 h-10 hover:bg-gray-100">
                 <span class="material-symbols-rounded mt-1"> close </span>
             </button>
         </div>
@@ -11,10 +11,10 @@
             <li
                 class="menu-item selected my-1 flex items-center gap-3 p-3 rounded-lg cursor-pointer"
             >
-                <span class="material-symbols-rounded featured"
+                <span class="material-symbols-rounded fill text-featured"
                     >auto_awesome</span
                 >
-                <span class="featured">DM Tour Guide</span>
+                <span class="text-featured">DM Tour Guide</span>
             </li>
         </ul>
 
@@ -24,27 +24,25 @@
             <li
                 class="menu-item my-1 flex items-center gap-3 p-3 rounded-lg cursor-pointer"
             >
-                <span class="material-symbols-rounded"> inbox </span>
+                <img :src="img4" />
                 <span>Inbox</span>
             </li>
             <li
                 class="menu-item my-1 flex items-center gap-3 p-3 rounded-lg cursor-pointer"
             >
-                <span class="material-symbols-rounded">gavel</span>
+                <img :src="img5" />
                 <span>Discussion Rules </span>
             </li>
             <li
                 class="menu-item my-1 flex items-center gap-3 p-3 rounded-lg cursor-pointer"
             >
-                <span class="material-symbols-rounded">
-                    perm_contact_calendar
-                </span>
+                <img :src="img6" />
                 <span>Adress Book</span>
             </li>
             <li
                 class="menu-item my-1 flex items-center gap-3 p-3 rounded-lg cursor-pointer"
             >
-                <span class="material-symbols-rounded">auto_awesome</span>
+                <img :src="img3" />
                 <span>Zapier</span>
             </li>
         </ul>
@@ -77,11 +75,19 @@
 <script>
 import img1 from "../../assets/boostDM.png";
 import img2 from "../../assets/BlurredDM.png";
+import img3 from "../../assets/Zapier.png";
+import img4 from "../../assets/inbox.png";
+import img5 from "../../assets/rules.png";
+import img6 from "../../assets/adressBook.png";
 export default {
     data() {
         return {
             img1,
             img2,
+            img3,
+            img4,
+            img5,
+            img6,
         };
     },
 };
@@ -90,6 +96,9 @@ export default {
 <style>
 .menu-item {
     font-weight: 700;
+    img {
+        width: 24px;
+    }
 }
 
 .menu-item:hover {
@@ -98,12 +107,5 @@ export default {
 
 .menu-item.selected {
     background-color: #1752650d;
-}
-
-.featured {
-    background: linear-gradient(91.74deg, #40bebe -20.8%, #2361e6 101.14%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 </style>

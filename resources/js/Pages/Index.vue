@@ -1,6 +1,6 @@
 <template>
-    <div class="py-4 px-2 h-dvh">
-        <div class="flex justify-between py-3">
+    <div class="px-3 h-dvh">
+        <div class="flex justify-between items-center h-20">
             <div>
                 <button class="rounded-lg back-btn w-10 h-10">
                     <span class="material-symbols-rounded ml-1">
@@ -17,13 +17,15 @@
                 />
             </button>
         </div>
-        <div class="flex gap-3" style="height: 92%;">
-            <div class="w-96 bg-white rounded-xl p-4 hidden lg:block">
-                 <Sidebar />
+        <div class="main flex gap-3">
+            <div
+                class="overflow-auto w-96 bg-white rounded-xl p-4 hidden lg:block"
+            >
+                <Sidebar />
             </div>
-            <div class="flex-1 rounded-xl w-full bg-white/50">
+            <div class="overflow-auto flex-1 rounded-xl w-full bg-white/50 p-6">
                 <!-- Main content -->
-                 <Content />
+                <Content />
             </div>
         </div>
     </div>
@@ -38,5 +40,7 @@ export default {
 </script>
 
 <style>
-
+.main {
+    height: calc(100dvh - 95px);
+}
 </style>
