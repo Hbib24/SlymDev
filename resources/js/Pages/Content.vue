@@ -50,7 +50,7 @@
             <img :src="img" />
 
             <div class="mt-6 flex justify-between items-center w-full">
-                <div class="flex gap-2">
+                <div class="flex gap-2 w-3/4">
                     <span class="material-symbols-rounded fill text-featured"
                         >check_circle</span
                     >
@@ -73,7 +73,7 @@
         </div>
 
         <div
-            data-modal-show="task-complete-modal"
+            @click="openTaskCompleteModal()"
             data-modal-target="task-complete-modal"
             class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center animate__animated animate__fadeIn hover:scale-105 ease-out duration-300 cursor-pointer"
         >
@@ -101,7 +101,10 @@
         </div>
     </div>
 
-    <taskComplete />
+    <taskComplete
+        :showTaskComplete="showTaskComplete"
+        :instance="taskCompleteModal"
+    />
 </template>
 
 <script>
@@ -111,6 +114,8 @@ import img3 from "../../assets/video.png";
 import check from "../../assets/check.png";
 
 import taskComplete from "../components/TaskCompleteModal.vue";
+
+import { Modal } from "flowbite";
 export default {
     components: { taskComplete },
     data() {
@@ -121,7 +126,29 @@ export default {
             check,
             completionPercent: 0,
             earnings: 0,
+            showTaskComplete: false,
+            taskCompleteModal: null,
         };
+    },
+    methods: {
+        openTaskCompleteModal() {
+            this.showTaskComplete = true;
+            const modal = new Modal(
+                document.getElementById("task-complete-modal"),
+                {},
+                {
+                    id: "task-complete-modal",
+                    override: true,
+                }
+            );
+
+            modal.show();
+            modal.updateOnHide(() => {
+                this.showTaskComplete = false;
+            });
+
+            this.taskCompleteModal = modal;
+        },
     },
     mounted() {
         const int = setInterval(() => {

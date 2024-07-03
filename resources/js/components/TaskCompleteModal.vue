@@ -12,14 +12,30 @@
                 <div
                     class="flex-col w-full text-center items-center justify-center p-8"
                 >
-                    <div class="text-3xl font-bold">
+                    <div class="flex justify-center">
+                        <Animation v-if="earned == 500" />
+                        <img
+                            :src="diamond"
+                            alt="diamond"
+                            class="w-60 animate__animated animate__tada"
+                        />
+                    </div>
+                    <div class="text-2xl font-bold">
                         Congratulations You've Earned
                     </div>
-                    <div class="text-4xl font-bold text-featured my-6">
-                        500 <span class="text-3xl">XP</span>
+                    <div class="my-6">
+                        <span
+                            id="earned"
+                            class="text-3xl hidden font-bold text-featured absolute inline-flex opacity-75 text-featured"
+                        >
+                            {{ earned }} <span class="text-3xl">XP</span>
+                        </span>
+                        <span class="text-3xl font-bold text-featured">
+                            {{ earned }} <span class="text-3xl">XP</span>
+                        </span>
                     </div>
-
                     <button
+                        @click="instance.hide()"
                         class="h-16 w-full rounded-xl bg-featured font-bold text-white"
                     >
                         Yeahhhhhhhhhhhhhh !
@@ -31,5 +47,33 @@
 </template>
 
 <script>
-export default {};
+import diamond from "../../assets/Diamond.svg";
+import Animation from "./Animation.vue";
+import { Modal } from "flowbite";
+export default {
+    components: { Animation },
+    props: { showTaskComplete: Boolean, instance: Modal },
+    watch: {
+        showTaskComplete() {
+            if (this.showTaskComplete) {
+                const ele = document.getElementById("earned");
+                ele.classList.add("hidden");
+                ele.classList.remove("animate-ping");
+                this.earned = 0;
+                const int = setInterval(() => {
+                    if (this.earned == 500) {
+                        clearInterval(int);
+                        ele.classList.remove("hidden");
+                        ele.classList.add("animate-ping");
+                    } else {
+                        this.earned++;
+                    }
+                }, 7);
+            }
+        },
+    },
+    data() {
+        return { diamond, earned: 0 };
+    },
+};
 </script>

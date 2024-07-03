@@ -42,7 +42,7 @@
             >
                 <!-------------------------------
 
-                        PAGE CONTENT SHOULD BE RENDERED THROUGH A ROUTER OUTLET SO THAT PAGE CHANGES WITH ROUTING
+                        PAGE CONTENT SHOULD BE RENDERED THROUGH A ROUTER OUTLET SO THAT CONTENT CHANGES WITH ROUTING
 
                 --------------------------------->
                 <Content />
