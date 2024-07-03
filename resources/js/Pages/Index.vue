@@ -6,8 +6,27 @@
 
     --------------------------------->
 
-    <div id="sidebar-nav" class="fixed top-0 left-0 z-40 h-screen p-4 bg-white w-3/4 overflow-y-auto transition-transform -translate-x-full" >
-        <Sidebar />
+    <div
+        id="sidebar-nav"
+        class="fixed top-0 left-0 z-40 h-screen bg-white sm:w-3/4 md:w-1/2 overflow-y-auto transition-transform -translate-x-full"
+    >
+        <div class="flex justify-between items-center p-4">
+            <div class="flex items-center">
+                <button
+                    class="rounded-lg back-btn bg-gray-300/50 hover:bg-gray-300 w-10 h-10"
+                >
+                    <span class="material-symbols-rounded ml-1">
+                        arrow_back_ios
+                    </span>
+                </button>
+
+                <span class="mx-3 font-semibold">Messages</span>
+            </div>
+        </div>
+
+        <div class="h-px w-full bg-gray-300"></div>
+
+        <div class="p-4"><Sidebar /></div>
     </div>
 
     <div class="px-3 h-dvh">
@@ -21,11 +40,11 @@
             <div
                 class="overflow-y-auto overflow-x-hidden flex-1 rounded-xl w-full md:bg-white/50 md:p-6"
             >
-                    <!-------------------------------
+                <!-------------------------------
 
                         PAGE CONTENT SHOULD BE RENDERED THROUGH A ROUTER OUTLET SO THAT PAGE CHANGES WITH ROUTING
 
-                    --------------------------------->
+                --------------------------------->
                 <Content />
             </div>
         </div>

@@ -1,7 +1,9 @@
 <template>
     <div class="flex flex-col items-center gap-6 max-w-xl mx-auto">
-        <div class="w-full h-20 animate__animated animate__fadeIn">
-            <div class="flex justify-between items-center">
+        <div class="w-full animate__animated animate__fadeIn">
+            <div
+                class="flex flex-col md:flex-row md:justify-between items-center justify-center text-center"
+            >
                 <div class="flex gap-x-3">
                     <span
                         class="material-symbols-rounded fill text-2xl text-featured"
@@ -12,6 +14,7 @@
                         Get Started
                     </div>
                 </div>
+                <br />
                 <div>
                     <div id="total-xp" class="text-featured font-bold">
                         You earned {{ earnings.toLocaleString("fr") }}
@@ -70,16 +73,18 @@
         </div>
 
         <div
+            data-modal-show="task-complete-modal"
+            data-modal-target="task-complete-modal"
             class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center animate__animated animate__fadeIn hover:scale-105 ease-out duration-300 cursor-pointer"
         >
             <img class="w-full" :src="img3" />
 
             <div class="mt-6 flex justify-between items-center w-full">
-                <div class="flex gap-2">
+                <div class="flex gap-2 w-3/4">
                     <span class="material-symbols-rounded text-featured"
                         >radio_button_unchecked</span
                     >
-                    <div>
+                    <div class="">
                         <div class="font-bold">Manage your messaging rules</div>
 
                         <div class="text-gray-500 mt-2 text-xs">
@@ -95,6 +100,8 @@
             </div>
         </div>
     </div>
+
+    <taskComplete />
 </template>
 
 <script>
@@ -102,7 +109,10 @@ import img from "../../assets/inboxGuide.png";
 import img2 from "../../assets/inboxGuide.png";
 import img3 from "../../assets/video.png";
 import check from "../../assets/check.png";
+
+import taskComplete from "../components/TaskCompleteModal.vue";
 export default {
+    components: { taskComplete },
     data() {
         return {
             img,

@@ -1,12 +1,22 @@
 <template>
     <div class="flex justify-between items-center h-20">
-        <div>
-            <button class="rounded-lg back-btn w-10 h-10">
+        <div class="flex items-center">
+            <button
+                class="hidden lg:block rounded-lg back-btn bg-gray-300/50 hover:bg-gray-300 w-10 h-10"
+            >
                 <span class="material-symbols-rounded ml-1">
                     arrow_back_ios
                 </span>
             </button>
-            <span class="mx-3 font-semibold">Messages</span>
+            <button
+                data-drawer-target="sidebar-nav"
+                data-drawer-show="sidebar-nav"
+                aria-controls="sidebar-nav"
+                class="block lg:hidden rounded-lg back-btn bg-gray-300/50 hover:bg-gray-300 w-10 h-10"
+            >
+                <span class="material-symbols-rounded"> menu </span>
+            </button>
+            <span class="mx-3 font-semibold hidden md:block">Messages</span>
         </div>
         <button class="rounded-full">
             <img

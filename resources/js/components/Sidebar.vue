@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <div class="flex justify-between items-center h-16">
             <span class="font-semibold">DM Setting</span>
             <button class="rounded-lg border w-10 h-10 hover:bg-gray-100">
@@ -9,6 +9,7 @@
 
         <ul class="list-none menu-list my-4">
             <li
+                data-drawer-hide="sidebar-nav"
                 class="menu-item selected my-1 flex items-center gap-3 p-3 rounded-lg cursor-pointer"
             >
                 <span class="material-symbols-rounded fill text-featured"
@@ -90,7 +91,6 @@ export default {
             img6,
         };
     },
-
 };
 </script>
 
