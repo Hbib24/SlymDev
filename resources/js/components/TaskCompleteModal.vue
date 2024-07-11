@@ -68,7 +68,7 @@ export default {
                     } else {
                         this.earned++;
                     }
-                }, 7);
+                }, 5);
             }
         },
     },

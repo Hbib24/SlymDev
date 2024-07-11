@@ -99,11 +99,22 @@
                 </div>
             </div>
         </div>
+
+        <button
+            class="w-full h-10 bg-featured rounded-lg text-white font-bold"
+            @click="openTourFinishModal()"
+        >
+            Finish Tour
+        </button>
     </div>
 
-    <taskComplete
+    <TaskComplete
         :showTaskComplete="showTaskComplete"
         :instance="taskCompleteModal"
+    />
+    <TourFinish
+        :showTaskComplete="showTourFinish"
+        :instance="tourFinishModal"
     />
 </template>
 
@@ -113,11 +124,12 @@ import img2 from "../../assets/inboxGuide.png";
 import img3 from "../../assets/video.png";
 import check from "../../assets/check.png";
 
-import taskComplete from "../components/TaskCompleteModal.vue";
+import TaskComplete from "../components/TaskCompleteModal.vue";
+import TourFinish from "../components/TourFinishModal.vue";
 
 import { Modal } from "flowbite";
 export default {
-    components: { taskComplete },
+    components: { TaskComplete, TourFinish },
     data() {
         return {
             img,
@@ -128,6 +140,8 @@ export default {
             earnings: 0,
             showTaskComplete: false,
             taskCompleteModal: null,
+            showTourFinish: false,
+            tourFinishModal: null,
         };
     },
     methods: {
@@ -148,6 +162,24 @@ export default {
             });
 
             this.taskCompleteModal = modal;
+        },
+        openTourFinishModal() {
+            this.showTourFinish = true;
+            const modal = new Modal(
+                document.getElementById("tour-finish-modal"),
+                {},
+                {
+                    id: "tour-finish-modal",
+                    override: true,
+                }
+            );
+
+            modal.show();
+            modal.updateOnHide(() => {
+                this.showTourFinish = false;
+            });
+
+            this.tourFinishModal = modal;
         },
     },
     mounted() {

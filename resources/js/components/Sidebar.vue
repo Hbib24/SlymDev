@@ -19,7 +19,7 @@
             </li>
         </ul>
 
-        <span class="text-gray-400 text-xs">MANAGE INBOX</span>
+        <span class="text-gray-400 font-semibold text-xs">MANAGE INBOX</span>
 
         <ul class="list-none menu-list my-4">
             <li
@@ -48,7 +48,9 @@
             </li>
         </ul>
 
-        <span class="text-gray-400 text-xs">ADVANCED MESSAGES</span>
+        <span class="text-gray-400 font-semibold text-xs"
+            >ADVANCED MESSAGES</span
+        >
 
         <ul class="list-none menu-list my-4">
             <li
