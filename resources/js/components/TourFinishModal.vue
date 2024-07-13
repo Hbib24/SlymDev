@@ -13,17 +13,22 @@
                     class="flex-col w-full text-center items-center justify-center p-8"
                 >
                     <div class="flex justify-center py-8">
-                        <Animation v-if="earned == 500" />
+                        <Animation v-if="showAnim" />
                         <span
                             class="material-symbols-rounded fill text-featured animate__animated animate__tada"
                             style="font-size: 6.3rem"
                             >check_circle</span
                         >
                     </div>
-                    <div class="text-2xl font-bold">
+                    <div
+                        class="text-2xl font-bold animate__animated animate__fadeInDown"
+                    >
                         Congratulations You've Completed
                     </div>
-                    <div class="mt-2 mb-6">
+                    <div
+                        class="mt-2 mb-6 animate__animated animate__fadeInDown"
+                        style="animation-delay: 500ms"
+                    >
                         <span
                             id="earned"
                             class="text-3xl hidden font-bold text-featured absolute inline-flex opacity-75 text-featured"
@@ -35,10 +40,14 @@
                         </span>
                     </div>
                     <div
-                        class="flex justify-between items-center my-6 w-1/2 font-bold mx-auto"
+                        class="flex justify-between items-center my-6 w-1/2 font-bold mx-auto animate__animated animate__fadeInDown"
+                        style="animation-delay: 1000ms"
                     >
                         <span class="text-gray-500">Total XP earned</span>
-                        <div class="text-md text-featured flex items-center">
+                        <div
+                            class="text-md text-featured flex items-center animate__animated animate__tada"
+                            style="animation-delay: 1500ms"
+                        >
                             <span class="material-symbols-rounded text-base"
                                 >check</span
                             >
@@ -65,27 +74,18 @@ import { Modal } from "flowbite";
 export default {
     components: { Animation },
     props: { showTourFinish: Boolean, instance: Modal },
-    // watch: {
-    //     showTourFinish() {
-    //         if (this.showTourFinish) {
-    //             const ele = document.getElementById("earned");
-    //             ele.classList.add("hidden");
-    //             ele.classList.remove("animate-ping");
-    //             this.earned = 0;
-    //             const int = setInterval(() => {
-    //                 if (this.earned == 500) {
-    //                     clearInterval(int);
-    //                     ele.classList.remove("hidden");
-    //                     ele.classList.add("animate-ping");
-    //                 } else {
-    //                     this.earned++;
-    //                 }
-    //             }, 5);
-    //         }
-    //     },
-    // },
+    watch: {
+        showTourFinish() {
+            this.showAnim = false;
+            if (this.showTourFinish) {
+                setTimeout(() => {
+                    this.showAnim = true;
+                }, 1500);
+            }
+        },
+    },
     data() {
-        return { diamond };
+        return { diamond, showAnim: false };
     },
 };
 </script>

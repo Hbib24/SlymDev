@@ -44,78 +44,84 @@
             BUT SINCE THIS IS A TEST I FOCUSED ON DESIGN RATHER THAN OPTIMIZATION  
 
         --------------------------------->
-        <div
-            class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center animate__animated animate__fadeIn hover:scale-105 ease-out duration-300 cursor-pointer"
-        >
-            <img :src="img" />
+        <template v-if="loading">
+            <CardSkeleton />
+            <CardSkeleton />
+        </template>
+        <template v-else>
+            <div
+                class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center animate__animated animate__fadeIn hover:scale-105 ease-out duration-300 cursor-pointer"
+            >
+                <img :src="img" />
 
-            <div class="mt-6 flex justify-between items-center w-full">
-                <div class="flex gap-2 w-3/4">
-                    <span class="material-symbols-rounded fill text-featured"
-                        >check_circle</span
-                    >
-                    <div>
-                        <div class="line-through text-gray-700 font-bold">
-                            Create more inbox
-                        </div>
+                <div class="mt-6 flex justify-between items-center w-full">
+                    <div class="flex gap-2 w-3/4">
+                        <span
+                            class="material-symbols-rounded fill text-featured"
+                            >check_circle</span
+                        >
+                        <div>
+                            <div class="line-through text-gray-700 font-bold">
+                                Create more inbox
+                            </div>
 
-                        <div class="text-gray-500 mt-2 text-xs">
-                            Create more inbox, welcome your new contact by a
-                            message
-                        </div>
-                    </div>
-                </div>
-                <div class="text-featured font-bold flex items-center">
-                    <span class="material-symbols-rounded">check </span>
-                    <span> 500 <small>XP</small></span>
-                </div>
-            </div>
-        </div>
-
-        <div
-            @click="openTaskCompleteModal()"
-            data-modal-target="task-complete-modal"
-            class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center animate__animated animate__fadeIn hover:scale-105 ease-out duration-300 cursor-pointer"
-        >
-            <img class="w-full" :src="img3" />
-
-            <div class="mt-6 flex justify-between items-center w-full">
-                <div class="flex gap-2 w-3/4">
-                    <span class="material-symbols-rounded text-featured"
-                        >radio_button_unchecked</span
-                    >
-                    <div class="">
-                        <div class="font-bold">Manage your messaging rules</div>
-
-                        <div class="text-gray-500 mt-2 text-xs">
-                            Create more inbox, welcome your new contact by a
-                            message
+                            <div class="text-gray-500 mt-2 text-xs">
+                                Create more inbox, welcome your new contact by a
+                                message
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="text-featured font-bold flex items-center">
-                    <span class="">+ </span>
-                    <span> 100 <small>XP</small></span>
+                    <div class="text-featured font-bold flex items-center">
+                        <span class="material-symbols-rounded">check </span>
+                        <span> 500 <small>XP</small></span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <button
-            class="w-full h-10 bg-featured rounded-lg text-white font-bold"
-            @click="openTourFinishModal()"
-        >
-            Finish Tour
-        </button>
+            <div
+                @click="openTaskCompleteModal()"
+                data-modal-target="task-complete-modal"
+                class="w-full bg-white p-5 shadow-sm rounded-xl flex flex-col items-center animate__animated animate__fadeIn hover:scale-105 ease-out duration-300 cursor-pointer"
+            >
+                <img class="w-full" :src="img3" />
+
+                <div class="mt-6 flex justify-between items-center w-full">
+                    <div class="flex gap-2 w-3/4">
+                        <span class="material-symbols-rounded text-featured"
+                            >radio_button_unchecked</span
+                        >
+                        <div class="">
+                            <div class="font-bold">
+                                Manage your messaging rules
+                            </div>
+
+                            <div class="text-gray-500 mt-2 text-xs">
+                                Create more inbox, welcome your new contact by a
+                                message
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-featured font-bold flex items-center">
+                        <span class="">+ </span>
+                        <span> 100 <small>XP</small></span>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                class="w-full h-10 bg-featured rounded-lg text-white font-bold"
+                @click="openTourFinishModal()"
+            >
+                Finish Tour
+            </button>
+        </template>
     </div>
 
     <TaskComplete
         :showTaskComplete="showTaskComplete"
         :instance="taskCompleteModal"
     />
-    <TourFinish
-        :showTaskComplete="showTourFinish"
-        :instance="tourFinishModal"
-    />
+    <TourFinish :showTourFinish="showTourFinish" :instance="tourFinishModal" />
 </template>
 
 <script>
@@ -126,10 +132,11 @@ import check from "../../assets/check.png";
 
 import TaskComplete from "../components/TaskCompleteModal.vue";
 import TourFinish from "../components/TourFinishModal.vue";
+import CardSkeleton from "../components/CardSkeleton.vue";
 
 import { Modal } from "flowbite";
 export default {
-    components: { TaskComplete, TourFinish },
+    components: { TaskComplete, TourFinish, CardSkeleton },
     data() {
         return {
             img,
@@ -142,6 +149,7 @@ export default {
             taskCompleteModal: null,
             showTourFinish: false,
             tourFinishModal: null,
+            loading: true,
         };
     },
     methods: {
@@ -203,6 +211,10 @@ export default {
                 this.earnings += 550;
             }
         }, 20);
+
+        setTimeout(() => {
+            this.loading = false;
+        }, 2500);
     },
 };
 </script>
