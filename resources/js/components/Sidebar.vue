@@ -10,12 +10,28 @@
         <ul class="list-none menu-list my-4">
             <li
                 data-drawer-hide="sidebar-nav"
-                class="menu-item selected my-1 flex items-center gap-3 p-3 rounded-lg cursor-pointer"
+                class="menu-item selected my-1 flex justify-between items-center gap-3 p-3 rounded-lg cursor-pointer text-gray-400"
             >
-                <span class="material-symbols-rounded fill text-featured"
-                    >auto_awesome</span
+                <div class="flex gap-3 items-center">
+                    <span class="material-symbols-rounded fill text-featured">
+                        auto_awesome
+                    </span>
+                    <span class="text-featured">DM Tour Guide</span>
+                </div>
+                <div
+                    class="h-8 w-8 rounded-full bg-white flex justify-center items-center shadow-md"
                 >
-                <span class="text-featured">DM Tour Guide</span>
+                    <div
+                        class="h-4/5 w-4/5 rounded-full bg-featured flex justify-center items-center"
+                    >
+                        <div
+                            class="h-4/5 w-4/5 rounded-full bg-white flex justify-center items-center text-xs"
+                        >
+                            <span class="text-featured font-bold">4</span
+                            ><small>/8</small>
+                        </div>
+                    </div>
+                </div>
             </li>
         </ul>
 
